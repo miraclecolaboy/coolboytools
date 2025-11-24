@@ -6,8 +6,12 @@ function addCountdown(){
         alert("请输入事件名或时间");
         return;
     }
-    const eventDate=new Date(targetDate);
-    const currentDate=new Date();
+     //发现时间有差 确保目标日期为午夜时间
+    const eventDate = new Date(targetDate);
+    eventDate.setHours(0, 0, 0, 0); // 将时间部分设置为00:00:00
+
+    const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0); // 将当前时间设置为00:00:00，避免影响计算
     const timeDiff=eventDate-currentDate;
     const dayDiff=Math.floor(timeDiff/(3600*1000*24));
     displayRecord(eventName,dayDiff);
@@ -43,13 +47,13 @@ function displayRecord(eventName,dayDiff){
 
     const countdownDiv=document.createElement("div");
     countdownDiv.classList.add("countdown-item");
- // 创建两个不同的 div 来分开显示内容
+ // 创建两个不同的 div 颜色区分内容
     const countdownContent = document.createElement("span");
-    countdownContent.classList.add("countdown-box");
+    countdownContent.classList.add("countdown-text");
     countdownContent.textContent = countdownText;
 
     const countupContent = document.createElement("span");
-    countupContent.classList.add("countup-box");
+    countupContent.classList.add("countup-text");
     countupContent.textContent = countupText;
 
     const deleteBtn=document.createElement("button");
@@ -57,6 +61,7 @@ function displayRecord(eventName,dayDiff){
     deleteBtn.onclick=function(){
         removeRecord(eventName,dayDiff,countdownDiv);
     }
+
     countdownDiv.appendChild(countdownContent);
     countdownDiv.appendChild(countupContent);
     countdownDiv.appendChild(deleteBtn);
