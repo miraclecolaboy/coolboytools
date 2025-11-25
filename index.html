@@ -3,23 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>计日数</title>
+    <title>帅哥的工具栏</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h2>纪念日/倒数日</h2>
 
-    <label for="name">请输入事件名</label>
-    <input type="text" id="name" placeholder="如生日/纪念日">
-    <br>
-    
-    <label for="date-input">请输入目标日期</label>
-    <input type="date" id="date-input">
-    
-    <button onclick="addCountdown()">添加记录</button>
-    <hr>
-    <div id="countdowns"></div>
+    <div class="head">
+        <label for="eventName">纪念日/倒数日:</label>
+        <input type="text" id="eventName" placeholder="请输入事件名 如生日或健身天数">
+        
+        <label for="eventDate">请选择日期:</label>
+        <input type="date" id="eventDate">
+        
+        <button onclick="addEvent()">添加事件</button>
+    </div>
+
+    <div class="container">
+        <div class="countdown">
+            <h2>倒数日</h2>
+            <ul id="countdownList"></ul>
+        </div>
+
+        <div class="countup">
+            <h2>纪念日</h2>
+            <ul id="countupList"></ul>
+        </div>
+    </div>
 
     <script src="script.js"></script>
+
 </body>
 </html>
